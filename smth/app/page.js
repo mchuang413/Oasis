@@ -1,7 +1,9 @@
 import React from "react";
+import About from "./components/About";
 
 const HomePage = () => {
   return (
+    <>
     <div>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content text-center">
@@ -17,6 +19,10 @@ const HomePage = () => {
         </div>
       </div>
     </div>
+    <div className="About">
+      <About></About>
+    </div>
+    </>
   );
 };
 
