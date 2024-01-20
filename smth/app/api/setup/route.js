@@ -20,6 +20,7 @@ export async function POST() {
   const vectorDimensions = 1536
 
   const client = new PineconeClient()
+  console.log(process.env.PINECONE_ENVIRONMENT);
   await client.init({
     apiKey: process.env.PINECONE_API_KEY || '',
     environment: process.env.PINECONE_ENVIRONMENT || ''

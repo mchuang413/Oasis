@@ -15,6 +15,8 @@ export const queryPineconeVectorStoreAndQueryLLM = async (
   // 2. Retrieve the Pinecone index
   const index = client.Index(indexName);
   // 3. Create query embedding
+  question=question.query;
+  console.log(question);
   const queryEmbedding = await new OpenAIEmbeddings().embedQuery(question)
   // 4. Query Pinecone index and return top 10 matches
   let queryResponse = await index.query({
@@ -55,6 +57,7 @@ export const createPineconeIndex = async (
   indexName,
   vectorDimension
 ) => {
+  console.log("helo");
   // 1. Initiate index existence check
   console.log(`Checking "${indexName}"...`);
   // 2. Get list of existing indexes

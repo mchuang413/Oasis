@@ -13,6 +13,8 @@ export async function POST(req) {
     environment: process.env.PINECONE_ENVIRONMENT || ''
   })
 
+  console.log(body);
+
   const text = await queryPineconeVectorStoreAndQueryLLM(client, indexName, body)
 
   return NextResponse.json({
