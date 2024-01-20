@@ -1,29 +1,32 @@
 import React from "react";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
     <div>
       <div className="navbar bg-base-100">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <a className="btn btn-ghost text-xl">Oasis</a>
         </div>
         <div className="flex-none">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a>Link</a>
+              <Link href="\">Home</Link>
             </li>
             <li>
-              <details>
-                <summary>Parent</summary>
-                <ul className="p-2 bg-base-100 rounded-t-none">
-                  <li>
-                    <a>Link 1</a>
-                  </li>
-                  <li>
-                    <a>Link 2</a>
-                  </li>
-                </ul>
-              </details>
+              <Link href="\explore">Explore</Link>
+            </li>
+            <li>
+              <Link href="\calendar">Calender</Link>
+            </li>
+            <li>
+              <Link href="\connect">Connect</Link>
+            </li>
+            <li>
+              <Link href="\courses">Courses</Link>
+            </li>
+            <li>
+              <Link href="\blog">Blog</Link>
             </li>
           </ul>
         </div>
