@@ -90,7 +90,7 @@ const Chat = () => {
             Send
           </button>
         </div>
-        {/*<button onClick={createIndexAndEmbeddings} className="btn btn-primary mt-6">Create embeddings DO NOT TOUCH</button>*/}
+        {/* {<button onClick={createIndexAndEmbeddings} className="btn btn-primary mt-6">Create embeddings DO NOT TOUCH</button>} */}
       </div>
       
     </div>
