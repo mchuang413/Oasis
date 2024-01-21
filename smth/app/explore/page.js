@@ -48,7 +48,7 @@ const resources = [
     website: 'https://calmmindfulness.org/',
     title: 'CALM - Centre For The Advanced Learning of Mindfulness',
     description: 'CALM provides the Mindfulness for Earth (M4E) and Mindfulness-Based Cognitive Therapy for Life (MBCT-L) programmes within the public, private and government sectors including Mental Health, Education, and Police organisations in the U.K., Europe, U.S.A., and internationally.',
-    image: 'waterfall.jpg',
+    image: '7ee692d2e080ff45a825ca4926e20ad9.jpg',
     category: 'Mindfulness',
   },
   {

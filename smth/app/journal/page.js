@@ -24,17 +24,17 @@ const Page = () => {
 
   return (
     <div className="bg-gray-100 p-16 rounded-lg shadow-md flex justify-center items-center h-screen">
-      <div className="bg-white p-12 rounded shadow w-96">
+      <div className="bg-white p-12 rounded shadow w-4/5 h-4/5">
         <h1 className="text-3xl font-bold mb-6">Journal Page</h1>
         <div>
           <textarea
-            className="w-full h-32 p-2 mb-4 border rounded"
+            className="w-full h-32 p-2 mb-4 border rounded w-600"
             value={currentEntry}
             onChange={handleInputChange}
             placeholder="Write your journal entry..."
           />
           <button
-            className="bg-blue-500 text-white px-6 py-3 rounded"
+            className="btn btn-accent"
             onClick={handleAddEntry}
           >
             Add Entry
