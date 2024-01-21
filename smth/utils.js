@@ -31,7 +31,7 @@ export const queryPineconeVectorStoreAndQueryLLM = async (
   console.log(`Found ${queryResponse.matches.length} matches...`);
   // 6. Log the question being asked
   console.log(`Asking question: ${question}...`);
-  if (queryResponse.matches.length) {
+  const prompt = `You are a personal assistant with a focus on mental health. Provide concise and respectful responses in three sentences or less. Remember to prioritize the user's well-being and offer supportive guidance. Now answer the user's question :\n\n${question}`;
     // 7. Create an OpenAI instance and load the QAStuffChain
     const llm = new OpenAI({});
     const chain = loadQAStuffChain(llm);
@@ -42,15 +42,11 @@ export const queryPineconeVectorStoreAndQueryLLM = async (
     // 9. Execute the chain with input documents and question
     const result = await chain.call({
       input_documents: [new Document({ pageContent: concatenatedPageContent })],
-      question: question,
+      question: prompt,
     });
     // 10. Log the answer
     console.log(`Answer: ${result.text}`);
     return result.text
-  } else {
-    // 11. Log that there are no matches, so GPT-3 will not be queried
-    console.log('Since there are no matches, GPT-3 will not be queried.');
-  }
 };
 export const createPineconeIndex = async (
   client,
