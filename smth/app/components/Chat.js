@@ -1,69 +1,86 @@
-//useState can only be run in a client component
-'use client'
-import React, { useState } from 'react';
+"use client";
+import { useState } from "react";
+import OpenAI from "openai";
 
 const Chat = () => {
-  const [userMessage, setUserMessage] = useState('');
-  const [chatMessages, setChatMessages] = useState([    
-    { type: 'user', content: 'Hello, ChatGPT!' },
-    { type: 'bot', content: 'Hi there! How can I assist you today?' },
-  ]);
+  const [userInput, setUserInput] = useState("");
+  const [messages, setMessages] = useState([]);
+  const apiKey = "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";
 
-  const handleUserMessage = async () => {
-    // Assuming you have an API endpoint and function to send user messages to ChatGPT
-    const apiEndpoint = 'https://api.openai.com/v1/messages';
-    
+  async function createIndexAndEmbeddings() {
     try {
-      const response = await fetch(apiEndpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${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}`, // Use your OpenAI API key
-        },
-        body: JSON.stringify({ userMessage }),
-      });
-
-      const { botResponse } = await response.json();
-
-      // Update the chatMessages state with the user message and bot response
-      setChatMessages([
-        ...chatMessages,
-        { type: 'user', content: userMessage },
-        { type: 'bot', content: botResponse },
-      ]);
-
-      // Clear the user message input field
-      setUserMessage('');
-    } catch (error) {
-      console.error('Error sending message to ChatGPT:', error);
+      const result = await fetch('/api/setup', {
+        method: "POST"
+      })
+      const json = await result.json()
+      console.log('result: ', json)
+    } catch (err) {
+      console.log('err:', err)
     }
+  }
+
+  const handleInputChange = (e) => {
+    setUserInput(e.target.value);
+  };
+
+  const openai = new OpenAI({
+    apiKey: apiKey,
+    dangerouslyAllowBrowser: true,
+  });
+
+  const handleSend = async () => {
+    // Add the user's message to the messages array
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      { role: "user", content: userInput },
+    ]);
+
+    // Make a request to OpenAI
+    const chatCompletion = await openai.chat.completions.create({
+      messages: [
+        ...messages, // Use the latest state returned by setMessages
+        { role: "user", content: userInput },
+      ],
+      model: "gpt-3.5-turbo",
+    });
+
+    const response = chatCompletion.choices[0].message.content;
+
+    // Add Oasis's response to the messages array
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      { role: "assistant", content: response },
+    ]);
+
+    setUserInput(""); // Clear the user input
   };
 
   return (
-    <div>
-      <div className="chat">
-        {chatMessages.map((message, index) => (
-          <div key={index} className={`chat-${message.type}`}>
-            <div className="chat-image avatar">
-              <div className="w-10 rounded-full">
-                <img
-                  alt="User avatar"
-                  src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                />
-              </div>
+    <div className="flex items-center justify-center">
+      <div className="bg-gray-100 p-8 rounded-lg shadow-md w-3/5 min-h-3/5">
+        <div className="space-y-4">
+          {messages.map((message, index) => (
+            <div
+              key={index}
+              className={`chat ${
+                message.role === "assistant" ? "chat-start" : "chat-end"
+              } ${index === messages.length - 1 ? "mb-0" : "mb-4"}`}
+            >
+              <div className="chat-bubble">{message.content}</div>
             </div>
-            <div className="chat-bubble">{message.content}</div>
-          </div>
-        ))}
-      </div>
-      <div className="message-box">
-        <input
-          type="text"
-          value={userMessage}
-          onChange={(e) => setUserMessage(e.target.value)}
-          placeholder="Type your message..."
-        />
-        <button onClick={handleUserMessage}>Send</button>
+          ))}
+        </div>
+        <div className="flex mt-4">
+          <input
+            className="flex-1 input input-primary mr-5"
+            type="text"
+            value={userInput}
+            onChange={handleInputChange}
+          />
+          <button className="btn btn-accent" onClick={handleSend}>
+            Send
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -1,0 +1,18 @@
+/* StressComponent.css */
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Adjust height as needed */
+    width: 50vh;
+  }
+  
+  .range {
+    /* Add your range input styles here */
+  }
+  
+  .range-accent {
+    /* Add styles for the accent color or any other specific styling */
+  }
+  

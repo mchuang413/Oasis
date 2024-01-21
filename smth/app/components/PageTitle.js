@@ -6,7 +6,7 @@ const PageTitle = ({ title, size }) => {
       <div>
         <div className="hero mt-20">
           <div className="hero-content text-center">
-            <h1 className={`text-${size}xl font-bold`}>{title}</h1>
+            <h1 className={`text-4xl font-bold`}>{title}</h1>
           </div>
         </div>
       </div>
