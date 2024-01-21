@@ -5,7 +5,6 @@ import OpenAI from "openai";
 const Chat = () => {
   const [query, setQuery] = useState("");
   const [messages, setMessages] = useState([]);
-  const apiKey = "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";
 
   async function createIndexAndEmbeddings() {
     try {
