@@ -27,13 +27,10 @@ const Navbar = () => {
               <Link href="\connect">Connect</Link>
             </li>
             <li>
-              <Link href="\courses">Courses</Link>
+              <Link href="\breath">Breathe</Link>
             </li>
             <li>
-              <Link href="\breath">Breath</Link>
-            </li>
-            <li>
-              <Link href="\blog">Blog</Link>
+              <Link href="\journal">Journal</Link>
             </li>
           </ul>
         </div>
