@@ -1,4 +1,4 @@
-### 2023 W3B Pitchfest First Place Winner: $1000 Prize Money
+### 2024 W3B Pitchfest First Place Winner: $1000 Prize Money
 
 # Oasis: Your Online Meditation and Wellness Platform
 
